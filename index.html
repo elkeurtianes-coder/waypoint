@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Waypoint — Train AI agents you can trust in production</title>
+  <meta name="description" content="Waypoint is a training and evaluation platform for AI agents. Build scenarios, replay every run, and catch regressions before release.">
+  <meta name="theme-color" content="#f8f7f3" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0b100e" media="(prefers-color-scheme: dark)">
+  <meta name="color-scheme" content="light dark">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Waypoint — Train AI agents you can trust in production">
+  <meta property="og:description" content="Build scenarios, replay every run, and catch regressions before release.">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 28 28'%3E%3Crect width='28' height='28' rx='8' fill='%230b6e4f'/%3E%3Cpath d='M8 19 14 7.5 20 19l-6-3.2L8 19Z' fill='%23fff'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="styles.css">
+  <script>
+    // Runs before first paint: flag JS support and apply a saved theme choice.
+    (function () {
+      var root = document.documentElement;
+      root.classList.add('js');
+      try {
+        var saved = localStorage.getItem('theme');
+        if (saved === 'light' || saved === 'dark') root.setAttribute('data-theme', saved);
+      } catch (e) { /* storage unavailable: follow the system setting */ }
+    })();
+  </script>
+</head>
+<body id="top">
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="#top" aria-label="Waypoint home">
+        <svg class="brand-mark" viewBox="0 0 28 28" width="28" height="28" aria-hidden="true" focusable="false">
+          <rect width="28" height="28" rx="8" fill="currentColor"/>
+          <path d="M8 19 14 7.5 20 19l-6-3.2L8 19Z" fill="#fff"/>
+        </svg>
+        <span>Waypoint</span>
+      </a>
+
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Open menu">
+        <svg class="icon-open" viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" focusable="false">
+          <path d="M4 7h16M4 12h16M4 17h16"/>
+        </svg>
+        <svg class="icon-close" viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" focusable="false">
+          <path d="M6 6l12 12M18 6 6 18"/>
+        </svg>
+      </button>
+
+      <nav id="site-nav" class="site-nav" aria-label="Primary">
+        <ul class="nav-list">
+          <li><a href="#features">Features</a></li>
+          <li><a href="#how-it-works">How it works</a></li>
+          <li><a href="#faq">FAQ</a></li>
+        </ul>
+        <button class="theme-toggle" type="button">
+          <svg class="icon-moon" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false">
+            <path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5Z"/>
+          </svg>
+          <svg class="icon-sun" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false">
+            <circle cx="12" cy="12" r="4"/>
+            <path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M5.3 18.7l1.4-1.4M17.3 6.7l1.4-1.4"/>
+          </svg>
+          <span class="theme-toggle-text">Switch to dark theme</span>
+        </button>
+        <a class="btn btn-primary btn-sm" href="#get-started">Get started</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <!-- Hero -->
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <p class="eyebrow"><span class="eyebrow-dot" aria-hidden="true"></span>Agent training &amp; evaluation</p>
+          <h1 id="hero-title">Train AI agents you can trust in production.</h1>
+          <p class="lead">Waypoint gives your team one place to build realistic scenarios, run agents against them, and see exactly where they fail — before your customers do.</p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#get-started">Get started</a>
+            <a class="btn btn-secondary" href="#how-it-works">See how it works</a>
+          </div>
+          <ul class="hero-points">
+            <li>
+              <svg viewBox="0 0 20 20" width="20" height="20" aria-hidden="true" focusable="false"><path d="m5 10.5 3.2 3.2L15 7"/></svg>
+              Works with any framework
+            </li>
+            <li>
+              <svg viewBox="0 0 20 20" width="20" height="20" aria-hidden="true" focusable="false"><path d="m5 10.5 3.2 3.2L15 7"/></svg>
+              Sandboxed by default
+            </li>
+            <li>
+              <svg viewBox="0 0 20 20" width="20" height="20" aria-hidden="true" focusable="false"><path d="m5 10.5 3.2 3.2L15 7"/></svg>
+              Runs in your CI
+            </li>
+          </ul>
+        </div>
+
+        <div class="hero-visual" role="img" aria-label="Illustration of a Waypoint run report: 46 of 50 scenarios passed, with one failing scenario flagged for review.">
+          <div class="report">
+            <div class="report-head">
+              <span class="report-title">nightly-regression · run 482</span>
+              <span class="pill pill-neutral">Completed</span>
+            </div>
+            <div class="report-score">
+              <div class="score-row">
+                <span class="score-value">92%</span>
+                <span class="score-label">46 of 50 scenarios passed</span>
+              </div>
+              <div class="score-bar"><span></span></div>
+            </div>
+            <div class="report-list">
+              <div class="report-item">
+                <span class="status status-pass"></span>
+                <span class="report-item-name">Refund request with missing order ID</span>
+                <span class="pill pill-pass">Pass</span>
+              </div>
+              <div class="report-item">
+                <span class="status status-pass"></span>
+                <span class="report-item-name">Multi-step booking change</span>
+                <span class="pill pill-pass">Pass</span>
+              </div>
+              <div class="report-item">
+                <span class="status status-fail"></span>
+                <span class="report-item-name">Ambiguous cancellation policy</span>
+                <span class="pill pill-fail">Fail</span>
+              </div>
+              <div class="report-item">
+                <span class="status status-pass"></span>
+                <span class="report-item-name">Recovery after tool timeout</span>
+                <span class="pill pill-pass">Pass</span>
+              </div>
+            </div>
+          </div>
+          <div class="callout">
+            <span class="callout-icon">
+              <svg viewBox="0 0 24 24" width="20" height="20"><path d="M3 3v18h18"/><path d="m7 9 4 4 3-3 5 6"/></svg>
+            </span>
+            <span class="callout-text">
+              <strong>Regression caught</strong>
+              <span>Policy tasks dropped 6 points since v2.4</span>
+            </span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Features -->
+    <section class="section" id="features" aria-labelledby="features-title">
+      <div class="container">
+        <div class="section-head">
+          <p class="eyebrow">Features</p>
+          <h2 id="features-title">Everything you need to ship agents with confidence</h2>
+          <p class="lead">From the first scenario to the release gate, Waypoint keeps training, evaluation, and review in one workflow.</p>
+        </div>
+
+        <ul class="feature-grid">
+          <li class="card">
+            <span class="card-icon">
+              <svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" focusable="false"><path d="M12 3 3 8l9 5 9-5-9-5Z"/><path d="m3 13 9 5 9-5"/></svg>
+            </span>
+            <h3>Scenario library</h3>
+            <p>Build reusable tasks with real tools, files, and edge cases, then organize them into suites your whole team can run.</p>
+          </li>
+          <li class="card">
+            <span class="card-icon">
+              <svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" focusable="false"><path d="M3.5 12a8.5 8.5 0 1 0 2.6-6.1"/><path d="M3.5 4v4.5H8"/><path d="m10.5 9 4.5 3-4.5 3V9Z"/></svg>
+            </span>
+            <h3>Replayable runs</h3>
+            <p>Step through every tool call, message, and decision. See what the agent saw at the exact moment things went wrong.</p>
+          </li>
+          <li class="card">
+            <span class="card-icon">
+              <svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9"/><path d="m8 12.2 2.8 2.8L16 9.5"/></svg>
+            </span>
+            <h3>Graded evaluations</h3>
+            <p>Combine programmatic checks with rubric-based grading so every run gets a score you can explain and defend.</p>
+          </li>
+          <li class="card">
+            <span class="card-icon">
+              <svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" focusable="false"><path d="M3 3v18h18"/><path d="m7 15 4-4 3 3 5-6"/></svg>
+            </span>
+            <h3>Regression tracking</h3>
+            <p>Compare prompts, models, and tool versions side by side, and catch quality drops before they reach a release.</p>
+          </li>
+          <li class="card">
+            <span class="card-icon">
+              <svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" focusable="false"><path d="M12 3 5 6v5c0 4.5 3 8.3 7 10 4-1.7 7-5.5 7-10V6l-7-3Z"/><path d="m9 12 2.2 2.2L15 10.5"/></svg>
+            </span>
+            <h3>Isolated sandboxes</h3>
+            <p>Every run gets its own filesystem and network policy, so agents can take real actions without touching real systems.</p>
+          </li>
+          <li class="card">
+            <span class="card-icon">
+              <svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" focusable="false"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0"/><path d="M16 4.6a3.5 3.5 0 0 1 0 6.8"/><path d="M18 14.5a6.5 6.5 0 0 1 3.5 5.5"/></svg>
+            </span>
+            <h3>Team review</h3>
+            <p>Annotate transcripts, flag failures, and turn a reviewer's notes into new scenarios with a single click.</p>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Spotlight: replay -->
+    <section class="section section-spotlight" aria-labelledby="spotlight-title">
+      <div class="container spotlight">
+        <div class="spotlight-copy">
+          <p class="eyebrow">Replay</p>
+          <h2 id="spotlight-title">See the exact step where a run went wrong</h2>
+          <p class="lead">Every run is recorded as a timeline of messages, tool calls, and decisions, so a failed check points to a moment instead of a mystery.</p>
+          <ul class="check-list">
+            <li>
+              <svg viewBox="0 0 20 20" width="20" height="20" aria-hidden="true" focusable="false"><path d="m5 10.5 3.2 3.2L15 7"/></svg>
+              Jump straight to the step that failed a check
+            </li>
+            <li>
+              <svg viewBox="0 0 20 20" width="20" height="20" aria-hidden="true" focusable="false"><path d="m5 10.5 3.2 3.2L15 7"/></svg>
+              Inspect the inputs and outputs of every tool call
+            </li>
+            <li>
+              <svg viewBox="0 0 20 20" width="20" height="20" aria-hidden="true" focusable="false"><path d="m5 10.5 3.2 3.2L15 7"/></svg>
+              Turn any failure into a new regression scenario
+            </li>
+          </ul>
+        </div>
+
+        <div class="spotlight-visual" role="img" aria-label="Illustration of a replayed run: after two tool calls, the agent's reply is flagged for promising a refund without confirming which policy applies.">
+          <div class="trace">
+            <div class="report-head">
+              <span class="report-title">run 482 · ambiguous-cancellation-policy</span>
+              <span class="pill pill-fail">Fail</span>
+            </div>
+            <div class="trace-body">
+              <div class="trace-step">
+                <div class="trace-content">
+                  <span class="trace-role">User</span>
+                  <div class="trace-text">Can I cancel my plan and get a refund for this month?</div>
+                </div>
+              </div>
+              <div class="trace-step">
+                <div class="trace-content">
+                  <span class="trace-role">Tool</span><span class="trace-call">lookup_account</span>
+                  <div class="trace-text is-muted">Annual plan, renewed 12 days ago</div>
+                </div>
+              </div>
+              <div class="trace-step">
+                <div class="trace-content">
+                  <span class="trace-role">Tool</span><span class="trace-call">search_policy</span>
+                  <div class="trace-text is-muted">2 policies match &ldquo;refund&rdquo;</div>
+                </div>
+              </div>
+              <div class="trace-step is-flagged">
+                <div class="trace-content">
+                  <span class="trace-role">Agent</span><span class="trace-flag">Check failed</span>
+                  <div class="trace-text">&ldquo;You&rsquo;ll get a full refund for this month.&rdquo;</div>
+                  <div class="trace-note">Promised a refund without confirming which policy applies.</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- How it works -->
+    <section class="section section-tint" id="how-it-works" aria-labelledby="how-title">
+      <div class="container">
+        <div class="section-head">
+          <p class="eyebrow">How it works</p>
+          <h2 id="how-title">From first scenario to release gate in three steps</h2>
+        </div>
+
+        <ol class="steps">
+          <li class="step">
+            <span class="step-num" aria-hidden="true">01</span>
+            <h3>Define scenarios</h3>
+            <p>Describe the task, the tools available, and what a good outcome looks like. Start from a template or import real transcripts.</p>
+          </li>
+          <li class="step">
+            <span class="step-num" aria-hidden="true">02</span>
+            <h3>Run your agent</h3>
+            <p>Point Waypoint at your agent and run the suite in parallel sandboxes, on demand or on every pull request.</p>
+          </li>
+          <li class="step">
+            <span class="step-num" aria-hidden="true">03</span>
+            <h3>Review and improve</h3>
+            <p>Read the scores, replay the failures, and feed what you learn back into prompts, tools, and new scenarios.</p>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="section" id="faq" aria-labelledby="faq-title">
+      <div class="container faq-layout">
+        <div class="section-head section-head-left">
+          <p class="eyebrow">FAQ</p>
+          <h2 id="faq-title">Questions, answered</h2>
+          <p class="lead">Can't find what you're looking for? <a href="mailto:hello@example.com">Send us a note</a>.</p>
+        </div>
+
+        <div class="faq-list">
+          <details class="faq-item">
+            <summary>Which agent frameworks does Waypoint support?</summary>
+            <p>Waypoint talks to your agent through a small HTTP or command-line adapter, so it works with any framework or a custom loop. If your agent can be started from a script, it can be evaluated.</p>
+          </details>
+          <details class="faq-item">
+            <summary>Where do runs execute?</summary>
+            <p>Each run executes in an isolated sandbox with its own filesystem and network policy. Use hosted runners, or bring your own infrastructure.</p>
+          </details>
+          <details class="faq-item">
+            <summary>Can we plug it into our CI pipeline?</summary>
+            <p>Yes. Trigger a suite from your pipeline and fail the build when a score drops below the threshold you set.</p>
+          </details>
+          <details class="faq-item">
+            <summary>How do we get access?</summary>
+            <p>Use the button below to send us a short note about your team and what you're building, and we'll follow up with next steps.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- Call to action -->
+    <section class="section section-cta" id="get-started" aria-labelledby="cta-title">
+      <div class="container">
+        <div class="cta-panel">
+          <h2 id="cta-title">Know how your agent behaves before your users find out.</h2>
+          <p>Tell us what you're building and we'll help you set up your first suite.</p>
+          <div class="cta-actions">
+            <a class="btn btn-lime" href="mailto:hello@example.com?subject=Waypoint%20access">Request access</a>
+            <a class="btn btn-outline-light" href="#features">Explore features</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a class="brand" href="#top" aria-label="Waypoint home">
+            <svg class="brand-mark" viewBox="0 0 28 28" width="28" height="28" aria-hidden="true" focusable="false">
+              <rect width="28" height="28" rx="8" fill="currentColor"/>
+              <path d="M8 19 14 7.5 20 19l-6-3.2L8 19Z" fill="#fff"/>
+            </svg>
+            <span>Waypoint</span>
+          </a>
+          <p>The training and evaluation platform for teams shipping AI agents.</p>
+        </div>
+
+        <nav class="footer-col" aria-label="Product">
+          <h2>Product</h2>
+          <ul>
+            <li><a href="#features">Features</a></li>
+            <li><a href="#how-it-works">How it works</a></li>
+            <li><a href="#faq">FAQ</a></li>
+          </ul>
+        </nav>
+
+        <div class="footer-col">
+          <h2>Get in touch</h2>
+          <ul>
+            <li><a href="mailto:hello@example.com">hello@example.com</a></li>
+            <li><a href="#get-started">Request access</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; <span id="year">2026</span> Waypoint. All rights reserved.</p>
+        <a href="#top">Back to top</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
